@@ -1,5 +1,3 @@
-#doubly linked
-
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -16,7 +14,6 @@ class MyLinkedList(object):
         
 
     def get(self, index):
-        #index out of range
         if index >= self.size or index < 0:
             return -1
 
@@ -58,7 +55,6 @@ class MyLinkedList(object):
         elif index == self.size:
             self.addAtTail(val)
         else:
-
             new_node = ListNode(val)
 
             curr = self.head
@@ -70,18 +66,23 @@ class MyLinkedList(object):
 
             curr.next = new_node
             new_node.next.prev = new_node
-
-        self.size += 1
+            self.size += 1
         
     def deleteAtIndex(self, index):
         if self.head is None or index < 0 or index >= self.size:
             return
         elif index == 0:
             self.head = self.head.next
-            self.head.prev = None
-        elif index == self.size-1:
+            if self.head:
+                self.head.prev = None
+            else:  # if it was the only node in the list
+                self.tail = None
+        elif index == self.size - 1:
             self.tail = self.tail.prev
-            self.tail.next = None
+            if self.tail:
+                self.tail.next = None
+            else:  # if it was the only node in the list
+                self.head = None
         else:
             curr = self.head
             for i in range(index):
@@ -91,13 +92,3 @@ class MyLinkedList(object):
             curr.next.prev = curr.prev
 
         self.size -= 1
-        
-
-
-# Your MyLinkedList object will be instantiated and called as such:
-# obj = MyLinkedList()
-# param_1 = obj.get(index)
-# obj.addAtHead(val)
-# obj.addAtTail(val)
-# obj.addAtIndex(index,val)
-# obj.deleteAtIndex(index)
