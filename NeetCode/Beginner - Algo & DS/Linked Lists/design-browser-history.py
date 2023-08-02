@@ -8,9 +8,6 @@ class BrowserHistory(object):
 
     def __init__(self, homepage):
         self.curr = ListNode(homepage)
-        self.size = 1
-        self.head = self.curr
-        self.tail = self.curr
 
     def visit(self, url):
         #create the new node
@@ -24,14 +21,11 @@ class BrowserHistory(object):
 
         #update the current node to be the most recent added one
         self.curr = self.curr.next
-        self.tail = self.curr
-
-        self.size += 1
 
     def back(self, steps):
 
         for i in range(steps):
-            if self.curr.prev != None:
+            if self.curr.prev is not None:
                 self.curr = self.curr.prev
             else:
                 break
@@ -43,7 +37,7 @@ class BrowserHistory(object):
     def forward(self, steps):
 
         for i in range(steps):
-            if self.curr.next != None:
+            if self.curr.next is not None:
                 self.curr = self.curr.next
             else:
                 break
