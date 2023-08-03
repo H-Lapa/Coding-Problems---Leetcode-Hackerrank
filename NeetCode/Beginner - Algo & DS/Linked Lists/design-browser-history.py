@@ -1,3 +1,4 @@
+#Using Linked Lists, as the goal
 class ListNode:
     def __init__ (self, val):
         self.val = val
@@ -51,3 +52,27 @@ class BrowserHistory(object):
 # obj.visit(url)
 # param_2 = obj.back(steps)
 # param_3 = obj.forward(steps)
+
+#optimal solution using arrays
+
+class BrowserHistory:
+
+    def __init__(self, homepage):
+        self.history = [homepage]
+        self.current_index = 0
+
+    def visit(self, url):
+        # If we visit a new URL, all the forward history should be cleared
+        self.history = self.history[:self.current_index + 1]
+        self.history.append(url)
+        self.current_index += 1
+
+    def back(self, steps):
+        # Move back in history by 'steps' or as much as possible
+        self.current_index = max(self.current_index - steps, 0)
+        return self.history[self.current_index]
+
+    def forward(self, steps):
+        # Move forward in history by 'steps' or as much as possible
+        self.current_index = min(self.current_index + steps, len(self.history) - 1)
+        return self.history[self.current_index]
