@@ -5,28 +5,18 @@
 #         self.next = next
 class Solution(object):
     def reverseList(self, head):
-
-        #handling an empty list
-        if head is None:
-            return None
-
-        prev = None
-        curr = head
-
-        while curr is not None:
-            #storing the next node after curr for later
-            after = curr.next
-
-            #curr pointer is getting set to the node behind it
-            curr.next = prev
-
-            #prev and curr are being incremented
-            prev = curr
-            curr = after
-    
-
-        return prev
-
+        # Base case: an empty list or a list with a single node
+        if head is None or head.next is None:
+            return head
+        
+        # Recursively reverse the rest of the list
+        reversed_tail = self.reverseList(head.next)
+        
+        # Adjust pointers to reverse the current node's next pointer
+        head.next.next = head
+        head.next = None
+        
+        return reversed_tail
 
         
 
