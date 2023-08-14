@@ -1,5 +1,5 @@
 #https://leetcode.com/problems/sort-an-array/
-#insertion sort 
+#insertion sort n^2
 
 class Solution(object):
     def sortArray(self, nums):
