@@ -64,3 +64,42 @@ class BrowserHistory(object):
 # obj.visit(url)
 # param_2 = obj.back(steps)
 # param_3 = obj.forward(steps)
+
+
+# new way of completing the challenge, using arrays:
+
+class BrowserHistory(object):
+
+    def __init__(self, homepage):
+        self.history = [homepage]
+        self.curr = 0
+
+    def visit(self, url):
+        self.history = self.history[:self.curr + 1]
+        self.history.append(url)
+        self.curr = len(self.history) - 1
+
+    def back(self, steps):
+        if steps >= self.curr:
+            self.curr = 0
+        else:
+            self.curr -= steps
+
+        return self.history[self.curr]
+        
+
+    def forward(self, steps):
+        if (len(self.history) - 1 - self.curr) < steps:
+            self.curr = len(self.history) - 1
+        else:
+            self.curr += steps
+
+        return self.history[self.curr]
+        
+        
+
+# Your BrowserHistory object will be instantiated and called as such:
+# obj = BrowserHistory(homepage)
+# obj.visit(url)
+# param_2 = obj.back(steps)
+# param_3 = obj.forward(steps)
