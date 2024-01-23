@@ -65,7 +65,7 @@ class BrowserHistory(object):
 # param_2 = obj.back(steps)
 # param_3 = obj.forward(steps)
 
-
+#struggled with this one
 # new way of completing the challenge, using arrays:
 
 class BrowserHistory(object):

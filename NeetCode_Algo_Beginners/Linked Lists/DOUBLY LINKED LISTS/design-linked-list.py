@@ -1,5 +1,5 @@
 # https://leetcode.com/problems/design-linked-list/
-
+#struggled with this one
 #failed attempt:
 
 class Node():
